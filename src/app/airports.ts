@@ -1,0 +1,22 @@
+export interface Airports {
+  nr: number | undefined;
+  airbaltic: number | undefined;
+  name: string | undefined;
+  continent: string | undefined;
+  elevation: number | undefined;
+  gps_code: string | undefined;
+  iata_code: string | undefined;
+  id: string | undefined;
+  iso_country: string | undefined;
+  iso_region: string | undefined;
+  latitude: string | undefined;
+  local_code: string | undefined
+  longitude: string | undefined;
+  lufthansa: number | undefined;
+  municipality: string | undefined;
+  ryanair: number | undefined;
+  scheduled_service: string | undefined;
+  turkishairlines: number | undefined;
+  type: string | undefined;
+  wizzair: number | undefined;
+}

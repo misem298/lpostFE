@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>{{ appTitle }}</h1>
+  <div>
+  The list of countries:
+  </div>
+  <div >
+    <select name="countries" (change)="selectCountriesHandler($event)">
+      <option  value="Choose a country" selected disabled>Choose a country</option>
+      <option *ngFor="let a of countries"   >
+        {{a.nr + "," + a.code + "," + a.name + "," + a.continent}}</option>
+    </select>
+    <ul></ul>
+  </div>
+  <div  *ngIf="selectedCountry ; else noCountries ">
+    <h1>selected country: {{selectedCountry}}, iso: {{iso_country}}</h1>
+    <div>select region: </div>
+    <!--div *ngIf="error_r">{{error_r}}</div>
+    <div *ngIf="success_r">{{success_r}}</div-->
+    <select name="regions" (change)="selectRegionsHandler($event)">
+      <option  value="Choose a region" selected disabled>Choose a regions</option>
+      <option *ngFor="let a of regions"  >
+        {{a.nr + "," + a.code + "," + a.name + "," + a.iso_country}}</option>
+    </select>
+  </div>
+
+  <div  *ngIf="selectedRegion ; else noRegion ">
+    <h1>selected region: {{selectedRegion}} , region ID {{iso_region}}</h1>
+    <div>select airports: </div>
+    <!--div *ngIf="error_a">{{error_a}}</div>
+    <div *ngIf="success_a">{{success_a}}</div-->
+    <div  *ngFor="let a of airports" > {{a.name}} ,
+    <ul>
+      <li *ngIf="a.wizzair !=0">{{getPrice('wizzair', a.id)}}wizzair {{prices.value}} </li>
+      <li *ngIf="a.ryanair !=0">{{getPrice('raynair', a.id)}}raynair {{prices.value}}  </li>
+      <li *ngIf="a.airbaltic !=0">{{getPrice('airbaltic', a.id)}}airbaltic {{prices.value}}</li>
+      <li *ngIf="a.turkishairlines !=0">{{getPrice('turkishairlines', a.id)}}turkishairlines {{prices.value}}</li>
+      <li *ngIf="a.lufthansa !=0">{{getPrice('lufthansa', a.id)}}lufthansa {{prices.currency}}</li>
+    </ul>
+    </div>
+  </div>
+  <ng-template #noCountries>
+    <p > No country selected</p>
+  </ng-template>
+  <ng-template #noRegion>
+    <p > No Region selected</p>
+  </ng-template>
+</div>

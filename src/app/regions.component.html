@@ -1,0 +1,9 @@
+<div>regions ---- {{iso_country}}</div>
+<div *ngIf="error_reg">{{error_reg}}</div>
+<div *ngIf="success_reg">{{success_reg}}</div>
+<select name="regions" (change)="selectRegionsHandler($event)">
+  <option  value="Choose a region" selected disabled>Choose a regions</option>
+  <option *ngFor="let a of regions"  >
+    {{a.nr + "," + a.code + "," + a.name + "," + a.iso}}</option>
+</select>
+
