@@ -15,9 +15,9 @@ import {Prices} from "./prices";
 export class CountriesService {
   @Input() iso_country: string | undefined;
   @Input() iso_region: string | undefined;
-  @Input() provider: string | undefined;
+  //@Input() provider: string | undefined;
   @Input() id: undefined;
-  @Input() idAirport: string | undefined;
+  //@Input() idAirport: string | undefined;
   @Input() code: undefined;
   public baseUrl = 'http://localhost/ltpost/php/';
   public provUrl = 'http://localhost:8085/item/price/';
@@ -44,7 +44,7 @@ export class CountriesService {
     );
   }
 
-  getRegionAirports(iso_region: string | undefined){
+  getRegionAirports(iso_region: string | undefined):Observable<any> {
     console.log('region id from countries.service.ts - ' + iso_region);
     return this.httpClient.get<Airports[]>(`${this.baseUrl}` + 'airports.php?iso_region=' + iso_region).pipe(
       map((res: any) => {
@@ -54,9 +54,9 @@ export class CountriesService {
     );
   }
 
-  getFlightPrice(provider: string, idAirport: string): Observable<any>{
+  getFlightPrice(provider: any, idAirport: any): Observable<any>{
     console.log('providers countries.service.ts - ' + provider);
-    return this.httpClient.get<Prices>(`${this.provUrl}` + provider + '/' + idAirport).pipe(
+    return this.httpClient.get<Prices[]>(`${this.provUrl}` + provider + '/' + idAirport).pipe(
       map((res: any) => {
         console.log(res);
         return res;

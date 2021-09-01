@@ -25,17 +25,17 @@
 
   <div  *ngIf="selectedRegion ; else noRegion ">
     <h1>selected region: {{selectedRegion}} , region ID {{iso_region}}</h1>
-    <div>select airports: </div>
+    <div>selected airports: </div>
     <!--div *ngIf="error_a">{{error_a}}</div>
     <div *ngIf="success_a">{{success_a}}</div-->
-    <div  *ngFor="let a of airports" > {{a.name}} ,
-    <ul>
-      <li *ngIf="a.wizzair !=0">{{getPrice('wizzair', a.id)}}wizzair {{prices.value}} </li>
-      <li *ngIf="a.ryanair !=0">{{getPrice('raynair', a.id)}}raynair {{prices.value}}  </li>
-      <li *ngIf="a.airbaltic !=0">{{getPrice('airbaltic', a.id)}}airbaltic {{prices.value}}</li>
-      <li *ngIf="a.turkishairlines !=0">{{getPrice('turkishairlines', a.id)}}turkishairlines {{prices.value}}</li>
-      <li *ngIf="a.lufthansa !=0">{{getPrice('lufthansa', a.id)}}lufthansa {{prices.currency}}</li>
-    </ul>
+    <div *ngFor="let a of airports" > {{a.name}} >
+
+      <li *ngIf="getPrice('wizzair', a.id)">wizzair {{prices[0].value}} </li>
+      <li *ngIf="getPrice('ryanair', a.id)">raynair {{prices[0].value}}  </li>
+      <li *ngIf="getPrice('ryanair', a.id)">airbaltic {{prices[0].value}}</li>
+      <li *ngIf="getPrice('turkishairlines', a.id)">turkishairlines {{prices[0].value}}</li>
+      <li *ngIf="getPrice('lufthansa', a.id)">lufthansa {{prices[0].value}}</li>
+
     </div>
   </div>
   <ng-template #noCountries>

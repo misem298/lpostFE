@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
   @Input() selectedAirport: any
   @Input() iso_country: any
   @Input() iso_region: string | undefined
-  @Input() idAirport: any
-  @Input() provider: any
+  //@Input() idAirport: any
+  //@Input() provider: any
   @Input() code: any
   appTitle = "LTpost app"
   public countries: Countries[] = [];
   public regions: Regions[] = [];
   public airports: Airports[] = [];
-  public prices: any;// \ undefined ;: Prices[] =[];
+  public prices: Prices[] =[];
   public error = '';
   public success = '';
   public error_r = '';
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
         this.airports = data;
         this.success_a = 'successful retrieval of the list';
         console.log(this.regions + ' app.component.ts list');
-        console.log(data);
+        console.log("airports  ++++++++++++++++ " + this.airports);
       },
       (err: string) => {
         console.log(err);
@@ -84,7 +84,7 @@ export class AppComponent implements OnInit {
       }
     );
   }
-  getPrice(provider:any,idAirport:any ){
+  getPrice(provider:any,idAirport:any ): any{
     this.countriesService.getFlightPrice(provider, idAirport).subscribe(
       (data: Prices[]) => {
         console.log(this.prices + ' app.component.ts prices');
@@ -99,7 +99,7 @@ export class AppComponent implements OnInit {
   selectCountriesHandler (event: any) {
     let comma1 = event.target.value.indexOf(',');
     let comma2 = event.target.value.indexOf(',', comma1 + 1);
-    this.iso_country = event.target.value.substring(comma1 + 1, comma2).trim().trim();
+    this.iso_country = event.target.value.substring(comma1 + 1, comma2).trim();
     this.selectedCountry = event.target.value.substring(comma2+1).trim();
     console.log( '    '  + this.selectedCountry + '    ' + this.iso_country );
     this.getRegions(this.iso_country);
@@ -109,9 +109,9 @@ export class AppComponent implements OnInit {
     console.log('works ');
     let comma1 = event.target.value.indexOf(',');
     let comma2 = event.target.value.indexOf(',', comma1 + 1);
-    this.iso_region = event.target.value.substring(comma1 + 1, comma2).trim();
-    this.selectedRegion = event.target.value.substring(comma2+1).trim();
+    this.iso_region = event.target.value.substring(comma1 + 1, comma2);
+    this.selectedRegion = event.target.value.substring(comma2+1);
     this.getAirports();
-    console.log(this.selectedRegion + "  this.selectedRegion  -" + this.airports);
+    console.log(this.selectedRegion + "  this.selectedRegion **************************  -" + this.airports);
   }
 }
